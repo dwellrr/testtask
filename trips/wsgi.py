@@ -1,5 +1,5 @@
 """
-WSGI config for testtask project.
+WSGI config for trips project.
 
 It exposes the WSGI callable as a module-level variable named ``application``.
 
@@ -11,6 +11,6 @@ import os
 
 from django.core.wsgi import get_wsgi_application
 
-os.environ.setdefault('DJANGO_SETTINGS_MODULE', 'testtask.settings')
+os.environ.setdefault('DJANGO_SETTINGS_MODULE', 'trips.settings')
 
 application = get_wsgi_application()

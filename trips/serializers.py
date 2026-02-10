@@ -2,7 +2,7 @@ from django.db import transaction
 from rest_framework import serializers
 
 from .models import TravelProject, ProjectPlace, PlaceNote
-from services.external_places_client import (
+from .services.external_places_client import (
     assert_place_exists,
     ExternalPlaceNotFound,
     ExternalAPIError,
