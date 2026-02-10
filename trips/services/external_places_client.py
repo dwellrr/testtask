@@ -17,7 +17,7 @@ def assert_place_exists(external_id: int, timeout_s: float = 5.0) -> None:
     Validates existence of an external place using the configured provider.
     Currently backed by Art Institute of Chicago API.
     """
-    url = f"{EXTERNAL_API_BASE_URL}/artworks/{external_id}"
+    url = f"{EXTERNAL_API_BASE_URL}/places/{external_id}"
 
     try:
         response = requests.get(url, timeout=timeout_s)
