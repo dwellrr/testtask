@@ -20,9 +20,13 @@ from rest_framework.routers import DefaultRouter
 
 from trips.services import external_places_client
 from trips.views.project_views import TravelProjectViewSet
+from trips.views.place_views import ProjectPlaceViewSet
+from trips.views.note_views import PlaceNoteViewSet
 
 router = DefaultRouter()
 router.register(r"projects", TravelProjectViewSet, basename="projects")
+router.register(r"places", ProjectPlaceViewSet, basename="places")
+router.register(r"notes", PlaceNoteViewSet, basename="notes")
 
 urlpatterns = [
     path('admin/', admin.site.urls),

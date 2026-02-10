@@ -45,7 +45,7 @@ class ProjectPlace(models.Model): #TODO: make a place its own class with caching
         related_name="places",
     )
 
-    external_id = models.PositiveIntegerField()  # AIC artwork id
+    external_id = models.IntegerField()  # AIC artwork id
     visited = models.BooleanField(default=False)
     visited_at = models.DateTimeField(blank=True, null=True)
 

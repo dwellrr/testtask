@@ -40,9 +40,22 @@ class TravelProjectViewSet(viewsets.ModelViewSet):
         if self.action == "create":
             return TravelProjectCreateSerializer
         return TravelProjectSerializer
+    
+    def create(self, request, *args, **kwargs):
+        in_ser = TravelProjectCreateSerializer(data=request.data)
+        in_ser.is_valid(raise_exception=True)
+        project = in_ser.save()
+
+        out_ser = TravelProjectSerializer(project, context={"request": request})
+        return Response(out_ser.data, status=status.HTTP_201_CREATED)
 
     def destroy(self, request, *args, **kwargs):
         project = self.get_object()
+        if project.places.filter(visited=True).exists():
+            return Response(
+                {"detail": "Cannot delete a project with any visited places."},
+                status=status.HTTP_409_CONFLICT,
+            )
         return super().destroy(request, *args, **kwargs)
 
     @action(detail=True, methods=["post"], url_path="places")

@@ -107,7 +107,7 @@ class TravelProjectCreateSerializer(serializers.ModelSerializer):
     }
     """
     places = serializers.ListField(
-        child=serializers.IntegerField(min_value=1),
+        child=serializers.IntegerField(),
         required=True,
         allow_empty=False,
         help_text="List of external place IDs (AIC artwork ids). Min 1, max 10.",
@@ -134,7 +134,6 @@ class TravelProjectCreateSerializer(serializers.ModelSerializer):
         project = TravelProject.objects.create(**validated_data)
 
         # Validate each external id exists upstream BEFORE persisting all.
-        # (If you prefer partial success, that’s a different contract.)
         for ext_id in places:
             try:
                 assert_place_exists(ext_id)
